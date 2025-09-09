@@ -2,6 +2,8 @@
 
 A modular kinetic Monte Carlo (KMC) simulation framework for predicting nanoparticle-protein interactions and corona formation.
 
+<img width="2950" height="2616" alt="final_surface" src="https://github.com/user-attachments/assets/3e4402cb-ac94-437e-85e9-3a874f2ff036" />
+
 ## Installation
 
 ### Prerequisites
