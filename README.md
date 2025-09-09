@@ -42,6 +42,8 @@ python run_pipeline.py --help                    # Show help
 python run_pipeline.py --skip-energy <project>   # Skip energy calculations  
 python run_pipeline.py --skip-projection <project> # Skip projections
 python run_pipeline.py --skip-simulation <project> # Skip simulation
+python run_pipeline.py --show-c                    # Show citations
+python run_pipeline.py --show-w                    # Show warranty
 ```
 
 ## Required Inputs
@@ -58,28 +60,42 @@ input/
 
 ### Configuration File (config.yaml)
 ```yaml
+# SurfCo Configuration File - Probability-Based Penalties
+
+# Nanoparticle properties
 nanoparticle:
-  radius: 35.0              # nm
-  material: "carbonblack"   # Must match MaterialSet.csv
-  zeta_potential: -0.015    # V
+  radius: 35.0                    # nm - nanoparticle radius
+  material: "carbonblack"         # must match MaterialSet.csv
+  zeta_potential: -0.015          # V - surface potential 
 
+# Simulation parameters
 simulation:
-  resolution: 0.1           # nm²/cell
-  iteration_limit: 200000
-  equilibrium_window: 190000
-  min_adsorption_probability: 0.70
-  max_adsorption_probability: 0.95
-  adsorption_event_probability: 0.99
-  max_displacement_probability: 0.8
-  coverage_threshold_for_displacement: 0.38
-  probability_penalty_per_extra_protein: 0.2
-  min_displacement_probability: 0.05
-  base_displacement_penalty: 0.1
+  resolution: 0.1                 # nm² per grid cell
+  iteration_limit: 200000          # maximum iterations
+  equilibrium_window: 190000        # iterations for equilibrium check
+  
+  # Energy normalization - maps raw energies to probability range
+  min_adsorption_probability: 0.70  # weakest binder
+  max_adsorption_probability: 0.95  # strongest binder
+  
+  # Event selection ratio - what fraction of events are adsorption attempts
+  adsorption_event_probability: 0.99  
+  
+  # Vroman effect control - coverage-dependent displacement
+  max_displacement_probability: 0.8   # Maximum displacement chance at high coverage (0-1)
+  coverage_threshold_for_displacement: 0.38  # Coverage % where displacement starts (0-1)
+  
+  # Probability-based penalty system 
+  probability_penalty_per_extra_protein: 0.2  # % probability reduction per extra protein displaced
+  min_displacement_probability: 0.05          # Never go below % displacement chance
+  base_displacement_penalty: 0.1             # % reduction for any displacement attempt
 
+# Protein concentrations (mg/mL)
 proteins:
-  HSA: 45.0                 # mg/mL
-  FIB-B: 3.0
-  HDL: 15.0
+  HSA: 45.0      # Human Serum Albumin
+  FIB-B: 3.0     # Fibrinogen B chain
+  HDL: 15.0      # High-density lipoprotein
+  FIB-A: 3.0     # Fibrinogen A chain
 ```
 
 ### Required Data Files
@@ -162,27 +178,3 @@ Concentration-weighted random selection:
 P_select(protein_i) = C_i / Σ(C_j)
 ```
 where C_i is the concentration of protein i.
-
-## Parameter Descriptions
-
-### Nanoparticle Parameters
-- **radius**: Nanoparticle radius in nanometers
-- **material**: Material identifier (must exist in MaterialSet.csv)
-- **zeta_potential**: Surface potential in volts (used by UnitedAtom)
-
-### Simulation Parameters  
-- **resolution**: Grid cell area in nm²/cell (controls spatial discretization)
-- **iteration_limit**: Maximum number of Monte Carlo steps
-- **equilibrium_window**: Number of iterations with unchanged state to declare equilibrium
-- **min/max_adsorption_probability**: Target probability range for weakest/strongest binders
-- **adsorption_event_probability**: Fraction of events that are adsorption attempts (vs desorption)
-
-### Vroman Effect Parameters
-- **max_displacement_probability**: Maximum displacement chance at full coverage
-- **coverage_threshold_for_displacement**: Coverage fraction where displacement begins
-- **probability_penalty_per_extra_protein**: Probability reduction per additional displaced protein
-- **min_displacement_probability**: Minimum displacement probability floor
-- **base_displacement_penalty**: Base probability reduction for any displacement
-
-### Protein Parameters
-- **concentrations**: Protein concentrations in mg/mL (determines selection probability)
