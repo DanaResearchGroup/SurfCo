@@ -1,0 +1,60 @@
+{
+  "total_iterations": 50000,
+  "final_coverage": 0.3435278245136984,
+  "total_proteins": 114,
+  "protein_counts": {
+    "HSA": 62,
+    "FIB-A": 10,
+    "HDL": 28,
+    "FIB-B": 14
+  },
+  "protein_coverage_fractions": {
+    "HSA": 0.16199374758704463,
+    "FIB-A": 0.050760682666125316,
+    "HDL": 0.07771308506972834,
+    "FIB-B": 0.05306030919080005
+  },
+  "equilibrium_reached": false,
+  "concentration_weights": {
+    "HSA": {
+      "concentration": 45.0,
+      "selection_probability": 0.7142857142857143,
+      "relative_frequency": 15.0
+    },
+    "FIB-B": {
+      "concentration": 3.0,
+      "selection_probability": 0.047619047619047616,
+      "relative_frequency": 1.0
+    },
+    "HDL": {
+      "concentration": 12.0,
+      "selection_probability": 0.19047619047619047,
+      "relative_frequency": 4.0
+    },
+    "FIB-A": {
+      "concentration": 3.0,
+      "selection_probability": 0.047619047619047616,
+      "relative_frequency": 1.0
+    }
+  },
+  "event_statistics": {
+    "simple_adsorption": 36748,
+    "adsorption_with_replacement": 614,
+    "failed_adsorption_energy": 3092,
+    "failed_adsorption_space": 9069,
+    "failed_displacement_vroman": 344041,
+    "failed_displacement_probability": 2471,
+    "successful_desorption": 42,
+    "failed_desorption_energy": 435,
+    "total_adsorption_attempts": 49523,
+    "total_desorption_attempts": 477
+  },
+  "timing_data": {
+    "initialization_time": 0.0005047321319580078,
+    "main_loop_time": 9620.943736076355,
+    "equilibrium_checks_time": 0.0964360237121582,
+    "logging_time": 0.5643229484558105,
+    "save_results_time": 0.0,
+    "iterations_per_second": 5.196995364655481
+  }
+}

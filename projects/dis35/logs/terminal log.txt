@@ -1,0 +1,208 @@
+(surfco-venv) benji@Zver:~/SurfCo$ python run_pipeline.py dis35
+
+======================================================================
+  SurfCo - Protein Corona Prediction Framework
+  Modular KMC Simulation for Nanoparticle-Protein Interactions
+======================================================================
+
+  PMF folder: /home/benji/SurfCo/data/surface/C_amorph-1
+  Hamaker file: /home/benji/SurfCo/data/hamaker/CarbonBlack.dat
+Project: dis35
+NP: R=35.0nm, Material=carbonblack, ζ=-15.0mV
+Proteins: HSA, FIB-B, HDL, FIB-A
+Grid: 393×393 (0.1 nm²/cell)
+Configuration loaded in 0.0s
+
+--------------------------------------------------
+  Module 1: Energy Calculator
+--------------------------------------------------
+  Found UA binary at: UnitedAtom
+  Calculating binding energies...
+    Processing HSA...
+      Scanning orientations for HSA in UA... Done
+    HSA: E = -148.74 kT
+    Processing FIB-B...
+      Scanning orientations for FIB-B in UA... Done
+    FIB-B: E = -155.48 kT
+    Processing HDL...
+      Scanning orientations for HDL in UA... Done
+    HDL: E = -193.35 kT
+    Processing FIB-A...
+      Scanning orientations for FIB-A in UA... Done
+    FIB-A: E = -141.62 kT
+
+  Probability-based normalization:
+    Target probability range: 90% to 99%
+    Raw energy range: [-193.3, -141.6] kT
+    Target energy range: [-4.60, -2.20]
+    HSA: E_raw = -148.7 → E_norm = -2.53
+      P_ads(θ=0) = 92.6%, P_des = 7.4%
+    FIB-B: E_raw = -155.5 → E_norm = -2.84
+      P_ads(θ=0) = 94.5%, P_des = 5.5%
+    HDL: E_raw = -193.3 → E_norm = -4.60
+      P_ads(θ=0) = 99.0%, P_des = 1.0%
+    FIB-A: E_raw = -141.6 → E_norm = -2.20
+      P_ads(θ=0) = 90.0%, P_des = 10.0%
+  Energy calculation completed in 10.4min
+
+--------------------------------------------------
+  Module 2: Projection Calculator
+--------------------------------------------------
+  Calculating 2D projections...
+      Generating 72 rotational masks for HSA (fixed size)...
+        Original mask: 402 cells
+        Rotated masks: 399-409 cells (variation: 10)
+    HSA: Area = 157.86 nm² [✓]
+      Generating 72 rotational masks for FIB-B (fixed size)...
+        Original mask: 587 cells
+        Rotated masks: 577-589 cells (variation: 12)
+    FIB-B: Area = 125.18 nm² [✓]
+      Generating 72 rotational masks for HDL (fixed size)...
+        Original mask: 429 cells
+        Rotated masks: 422-433 cells (variation: 11)
+    HDL: Area = 71.60 nm² [✓]
+      Generating 72 rotational masks for FIB-A (fixed size)...
+        Original mask: 779 cells
+        Rotated masks: 773-789 cells (variation: 16)
+    FIB-A: Area = 208.28 nm² [✓]
+  Projection calculation completed in 1.3s
+
+--------------------------------------------------
+  Module 3: KMC Simulation
+--------------------------------------------------
+  Starting simulation...
+    Surface: 15393.8 nm²
+    Grid: 393×393
+    Proteins: 4
+    Using 72 rotational masks per protein (5° increments, FIXED SIZE)
+  Concentration-based selection probabilities:
+    HSA: 45.0 mg/mL (71.4% selection chance, 15.0x relative frequency)
+    FIB-B: 3.0 mg/mL (4.8% selection chance, 1.0x relative frequency)
+    HDL: 12.0 mg/mL (19.0% selection chance, 4.0x relative frequency)
+    FIB-A: 3.0 mg/mL (4.8% selection chance, 1.0x relative frequency)
+    Total concentration: 63.0 mg/mL
+
+  Event selection probabilities (FIXED at 99% adsorption):
+    HSA: E_norm = -2.53 → Adsorption: 99.0%, Desorption: 1.0% (FIXED)
+    FIB-B: E_norm = -2.84 → Adsorption: 99.0%, Desorption: 1.0% (FIXED)
+    HDL: E_norm = -4.60 → Adsorption: 99.0%, Desorption: 1.0% (FIXED)
+    FIB-A: E_norm = -2.20 → Adsorption: 99.0%, Desorption: 1.0% (FIXED)
+
+  Probability-based displacement penalties (INTUITIVE):
+    Base displacement penalty: 15% (any displacement)
+    Extra protein penalty: 15% per additional protein
+    Minimum displacement chance: 5%
+    Coverage threshold for displacement: 35%
+    Maximum displacement chance: 70%
+  Displacement probability examples:
+    1 protein displaced: Base prob × 85% = X × 85%
+    2 proteins displaced: Base prob × 85% × 85% = X × 72%
+    3 proteins displaced: Base prob × 85% × 70% = X × 60%
+
+    Iteration 1000: 35.6% coverage, 114 proteins (5 it/s)
+    Iteration 2000: 29.4% coverage, 100 proteins (6 it/s)
+    Iteration 3000: 22.1% coverage, 69 proteins (5 it/s)
+    Iteration 4000: 34.1% coverage, 120 proteins (5 it/s)
+    Iteration 5000: 33.1% coverage, 105 proteins (5 it/s)
+    Iteration 6000: 16.0% coverage, 48 proteins (5 it/s)
+    Iteration 7000: 30.1% coverage, 109 proteins (5 it/s)
+    Iteration 8000: 32.2% coverage, 110 proteins (5 it/s)
+    Iteration 9000: 33.7% coverage, 115 proteins (5 it/s)
+    Iteration 10000: 34.8% coverage, 124 proteins (6 it/s)
+    Iteration 11000: 14.1% coverage, 48 proteins (5 it/s)
+    Iteration 12000: 24.8% coverage, 85 proteins (5 it/s)
+    Iteration 13000: 25.5% coverage, 85 proteins (5 it/s)
+    Iteration 14000: 25.5% coverage, 86 proteins (5 it/s)
+    Iteration 15000: 27.3% coverage, 79 proteins (5 it/s)
+    Iteration 16000: 30.2% coverage, 99 proteins (5 it/s)
+    Iteration 17000: 26.0% coverage, 85 proteins (5 it/s)
+    Iteration 18000: 31.3% coverage, 109 proteins (6 it/s)
+    Iteration 19000: 32.8% coverage, 107 proteins (5 it/s)
+    Iteration 20000: 27.2% coverage, 84 proteins (4 it/s)
+    Iteration 21000: 21.5% coverage, 57 proteins (6 it/s)
+    Iteration 22000: 14.1% coverage, 44 proteins (6 it/s)
+    Iteration 23000: 34.7% coverage, 112 proteins (6 it/s)
+    Iteration 24000: 24.0% coverage, 79 proteins (5 it/s)
+    Iteration 25000: 25.5% coverage, 82 proteins (5 it/s)
+    Iteration 26000: 24.4% coverage, 71 proteins (5 it/s)
+    Iteration 27000: 33.4% coverage, 114 proteins (6 it/s)
+    Iteration 28000: 23.1% coverage, 61 proteins (6 it/s)
+    Iteration 29000: 28.5% coverage, 103 proteins (5 it/s)
+    Iteration 30000: 27.6% coverage, 92 proteins (4 it/s)
+    Iteration 31000: 15.1% coverage, 49 proteins (6 it/s)
+    Iteration 32000: 31.6% coverage, 102 proteins (5 it/s)
+    Iteration 33000: 31.1% coverage, 97 proteins (5 it/s)
+    Iteration 34000: 25.4% coverage, 90 proteins (5 it/s)
+    Iteration 35000: 33.8% coverage, 119 proteins (5 it/s)
+    Iteration 36000: 12.3% coverage, 41 proteins (5 it/s)
+    Iteration 37000: 15.4% coverage, 38 proteins (5 it/s)
+    Iteration 38000: 12.5% coverage, 40 proteins (6 it/s)
+    Iteration 39000: 20.1% coverage, 65 proteins (6 it/s)
+    Iteration 40000: 26.5% coverage, 88 proteins (5 it/s)
+    Iteration 41000: 35.1% coverage, 125 proteins (4 it/s)
+    Iteration 42000: 15.9% coverage, 44 proteins (5 it/s)
+    Iteration 43000: 11.5% coverage, 34 proteins (6 it/s)
+    Iteration 44000: 19.7% coverage, 63 proteins (7 it/s)
+    Iteration 45000: 34.1% coverage, 121 proteins (6 it/s)
+    Iteration 46000: 23.3% coverage, 77 proteins (5 it/s)
+    Iteration 47000: 33.8% coverage, 117 proteins (5 it/s)
+    Iteration 48000: 30.3% coverage, 113 proteins (6 it/s)
+    Iteration 49000: 27.9% coverage, 98 proteins (5 it/s)
+    Iteration 50000: 34.4% coverage, 114 proteins (5 it/s)
+  Simulation complete: 50000 iterations
+
+  Event Statistics (after 50000 iterations):
+    Total event attempts: 50000
+
+    Adsorption Events:
+      Total attempts: 49523
+      Simple adsorption: 36748
+      Adsorption with replacement: 614
+      Failed (energy): 3092
+      Failed (Vroman effect): 344041
+      Failed (probability penalties): 2471
+      Failed (no space): 9069
+
+    Desorption Events:
+      Total attempts: 477
+      Successful: 42
+      Failed (energy): 435
+    Adsorption success rate: 75.4%
+    Desorption success rate: 8.8%
+
+    Performance: 5 iterations/second
+
+  Final Results:
+    Total coverage: 34.4%
+    Total proteins: 114
+    HSA: 62 proteins (16.20% coverage, E_norm=-2.53)
+    FIB-B: 14 proteins (5.31% coverage, E_norm=-2.84)
+    HDL: 28 proteins (7.77% coverage, E_norm=-4.60)
+    FIB-A: 10 proteins (5.08% coverage, E_norm=-2.20)
+  Simulation completed in 2.7h
+
+--------------------------------------------------
+  Module 4: Analysis & Visualization
+--------------------------------------------------
+  Creating visualizations...
+    Protein accumulation plot created
+    Coverage plots created
+    Final composition plot created
+    Surface visualization created
+  Visualizations complete
+  Visualization completed in 3.3s
+
+======================================================================
+  Complete! Results saved to: projects/dis35/
+  Total runtime: 2.8h
+======================================================================
+
+  Timing Breakdown:
+    Configuration: 0.0s
+    Energy calculation: 10.4min
+    Projection calculation: 1.3s
+    Simulation: 2.7h
+    Visualization: 3.3s
+    Total: 2.8h
+
+(surfco-venv) benji@Zver:~/SurfCo$

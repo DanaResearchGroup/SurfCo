@@ -1,0 +1,16 @@
+{
+  "configuration": 0.006226539611816406,
+  "energy_calculation": 597.69153881073,
+  "projection_calculation": 1.2061593532562256,
+  "simulation": 15236.793470859528,
+  "simulation_details": {
+    "initialization_time": 0.00015425682067871094,
+    "main_loop_time": 15236.136101484299,
+    "equilibrium_checks_time": 0.10493254661560059,
+    "logging_time": 0.6110458374023438,
+    "save_results_time": 0.6445960998535156,
+    "iterations_per_second": 3.2816719191113695
+  },
+  "visualization": 3.261899709701538,
+  "total_runtime": 15838.959642410278
+}

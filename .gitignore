@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+surfco_env/
+surfco-venv/
+venv/
+ENV/
+env/
+*.egg-info/
+dist/
+build/
+
+# UnitedAtom - exclude NPCoronaPredict but keep our build
+ua/NPCoronaPredict/
+ua/src/
+*.o
+
+# Keep UnitedAtom symlink and build directory
+!ua/build/
+!ua/build/UnitedAtom
+
+# Project outputs - exclude all EXCEPT dis40
+projects/*/
+!projects/dis40/
+
+# Input files - exclude all EXCEPT dis40
+input/*/
+!input/dis40/
+
+# Keep all data directories (for UA to use)
+# data/ is included by default
+
+# IDE and system files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+.ipynb_checkpoints/
+
+# Temporary files
+*.tmp
+*.bak
+*~
+*.log
+
+# UA output files that might be generated
+*.uam
+*_ua.config
